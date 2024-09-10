@@ -5,6 +5,7 @@ class Lexer():
         self.lexer = LexerGenerator()
 
     def _add_tokens(self):
+        self.lexer.add('MUL', r'\*')
         # Print
         self.lexer.add('PRINT', r'theOffice')
         # Parenthesis
@@ -19,6 +20,7 @@ class Lexer():
         self.lexer.add('NUMBER', r'\d+')
         # Ignore spaces
         self.lexer.ignore('\s+')
+
 
     def get_lexer(self):
         self._add_tokens()

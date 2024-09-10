@@ -25,15 +25,6 @@ class CodeGen():
         block = base_func.append_basic_block(name="entry")
         self.builder = ir.IRBuilder(block)
 
-        # Use i32
-        int32 = ir.IntType(32)
-        val1 = ir.Constant(int32, 4)  # constante 4 como i32
-        val2 = ir.Constant(int32, 2)  # constante 2 como i32
-
-        # Add and subtract using i32
-        sum_val = self.builder.add(val1, val1, name="sum")
-        sub_val = self.builder.sub(sum_val, val2, name="sub")
-
         # Verifique se a variável global já foi criada
         if "fstr" not in [gv.name for gv in self.module.global_values]:
             # Criar a string de formato para printf
@@ -43,11 +34,6 @@ class CodeGen():
             format_str.global_constant = True
             format_str.initializer = ir.Constant(str_type, bytearray(str_fmt.encode("utf8")))
 
-        # Bitcast the format string to i8*
-        fmt_ptr = self.builder.bitcast(self.module.get_global("fstr"), ir.IntType(8).as_pointer())
-
-        # Agora a função printf está disponível e podemos usá-la
-        self.builder.call(self.printf, [fmt_ptr, sub_val])
 
     def _create_execution_engine(self):
         """

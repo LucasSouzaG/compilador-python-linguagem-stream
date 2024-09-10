@@ -27,6 +27,12 @@ class Sub(BinaryOp):
         i = self.builder.sub(self.left.eval(), self.right.eval())
         return i
 
+
+class Mul(BinaryOp):
+    def eval(self):
+        return self.builder.mul(self.left.eval(), self.right.eval())
+
+
 class Print():
     def __init__(self, builder, module, printf, value):
         self.builder = builder

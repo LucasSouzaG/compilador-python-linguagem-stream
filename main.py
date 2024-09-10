@@ -1,6 +1,7 @@
 from lexer import Lexer
 from parser import Parser
 from codegen import CodeGen
+from run_code import  run_code
 
 fname = "input.stream"
 
@@ -23,3 +24,6 @@ parser.parse(tokens).eval()
 
 codegen.create_ir()
 codegen.save_ir("output.ll")
+
+with open('output.ll') as f:
+    run_code(f.read())
