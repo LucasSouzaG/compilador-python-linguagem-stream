@@ -1,7 +1,7 @@
-from lexer import Lexer
-from parser import Parser
-from codegen import CodeGen
-from run_code import  run_code
+from compiler.lexer import Lexer
+from compiler.parser import Parser
+from compiler.codegen import CodeGen
+from compiler.run_code import  run_code
 
 fname = "input.stream"
 
@@ -25,5 +25,5 @@ parser.parse(tokens).eval()
 codegen.create_ir()
 codegen.save_ir("output.ll")
 
-with open('output.ll') as f:
+with open('compiler\output\output.ll') as f:
     run_code(f.read())

@@ -22,8 +22,9 @@ class CodeGen():
         self.module.triple = self.binding.get_default_triple()
         func_type = ir.FunctionType(ir.VoidType(), [], False)
         base_func = ir.Function(self.module, func_type, name="main")
-        block = base_func.append_basic_block(name="entry")
+        block = base_func.append_basic_block(name="code")
         self.builder = ir.IRBuilder(block)
+
 
         # Verifique se a variável global já foi criada
         if "fstr" not in [gv.name for gv in self.module.global_values]:
@@ -33,7 +34,6 @@ class CodeGen():
             format_str = ir.GlobalVariable(self.module, str_type, name="fstr")
             format_str.global_constant = True
             format_str.initializer = ir.Constant(str_type, bytearray(str_fmt.encode("utf8")))
-
 
     def _create_execution_engine(self):
         """
@@ -76,6 +76,6 @@ class CodeGen():
         self._compile_ir()
 
     def save_ir(self, filename):
-        with open(filename, 'w') as output_file:
+        with open(f'compiler\output\{filename}', 'w') as output_file:
             output_file.write(str(self.module))
 

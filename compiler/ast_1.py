@@ -9,6 +9,16 @@ class Number():
     def eval(self):
         i = ir.Constant(ir.IntType(32), int(self.value))  # Use i32
         return i
+    
+class String():
+    def __init__(self, builder, module, value):
+        self.builder = builder
+        self.module = module
+        self.value = value
+
+    def eval(self):
+        return self.value.replace('"', '')
+    
 
 class BinaryOp():
     def __init__(self, builder, module, left, right):
@@ -31,6 +41,10 @@ class Sub(BinaryOp):
 class Mul(BinaryOp):
     def eval(self):
         return self.builder.mul(self.left.eval(), self.right.eval())
+
+class Div(BinaryOp):
+    def eval(self):
+        return self.builder.sdiv(self.left.eval(), self.right.eval())
 
 
 class Print():

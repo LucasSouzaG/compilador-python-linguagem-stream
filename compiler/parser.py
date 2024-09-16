@@ -1,5 +1,5 @@
 from rply import ParserGenerator
-from ast_1 import Number, Sum, Sub, Print, Mul
+from compiler.ast_1 import Number, Sum, Sub, Print, Mul, Div, String
 
 
 class Parser():
@@ -8,6 +8,7 @@ class Parser():
             # A list of all token names accepted by the parser.
             [
                 "NUMBER",
+                "STRING",
                 "PRINT",
                 "OPEN_PAREN",
                 "CLOSE_PAREN",
@@ -15,9 +16,10 @@ class Parser():
                 "SUM",
                 "SUB",
                 'MUL',
+                'DIV'
             ],
             precedence=[("left", ["SUM", "SUB"]),
-                        ('left', ['MUL'])],
+                        ('left', ['MUL', 'DIV'])],
         )
         self.module = module
         self.builder = builder
@@ -31,6 +33,7 @@ class Parser():
         @self.pg.production('expression : expression SUM expression')
         @self.pg.production('expression : expression SUB expression')
         @self.pg.production('expression : expression MUL expression')
+        @self.pg.production('expression : expression DIV expression')
         def expression(p):
             left = p[0]
             right = p[2]
@@ -41,10 +44,17 @@ class Parser():
                 return Sub(self.builder, self.module, left, right)
             elif operator.gettokentype() == 'MUL':
                 return Mul(self.builder, self.module, left, right)
+            elif operator.gettokentype() == 'DIV':
+                return Div(self.builder, self.module, left, right)
+
 
         @self.pg.production('expression : NUMBER')
         def number(p):
             return Number(self.builder, self.module, p[0].value)
+        
+        @self.pg.production('expression : STRING')
+        def string(p):
+            return String(self.builder, self.module, p[0].value)
 
         @self.pg.error
         def error_handle(token):
