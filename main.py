@@ -44,3 +44,18 @@ with open(sys.argv[1], 'r') as fonte:
 
 # Executar o arquivo gerado
 os.system(f"python {sys.argv[1]}.py")
+
+
+
+"with open(sys.argv[1], 'r') as fonte:
+    for linha in fonte:
+        for x in linha.split():
+            for x_, y in dicionario:
+                match = re.search(re.compile(x_), x)
+                if match and (x_ == x):
+                    print(f'[ERROR]: line {linha}')
+                    break
+        for (velho, novo) in dicionario:
+            linha = linha.replace(velho, novo)
+        with open(f"{sys.argv[1]}.py", 'a') as f:  # Abrir em modo de anexação
+            f.write(linha)"
