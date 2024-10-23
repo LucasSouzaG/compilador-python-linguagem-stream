@@ -18,7 +18,8 @@ class Dictionary:
               ("theOffice", "print"),
               ("oRetornoDoJedi", "return"),
               ("Valente", "range"),
-              (" ", " ")]
+              (" ", " "),
+              ("input", "input")]
 
     stream_words = [word[0] for word in dictionary]
     py_words = [word[1] for word in dictionary]
@@ -27,5 +28,5 @@ class Dictionary:
         pass
     
     def word_validation(self, word_to_validate):
-        return word_to_validate in self.stream_wowrds
+        return word_to_validate in self.stream_words
 

@@ -1,12 +1,16 @@
+import sys
+
 from dicionario import Dictionary
+import os
+import time
 
 class Lexer:
     file_name = ""
     dicionario = Dictionary()
     
     def __init__(self, file_name):
-        self.file_name = file_name
-    
+        self.file_name = str(file_name)
+
     def write_head_file(self):
         cabecalho = "#coding: utf8\nimport math\ndef ler(texto):\n  t = raw_input(texto)\n  if t.isdigit():\n    return " \
             "float(t)\n  else:\n    return t\ndef lista(inicio, fim, passo=1):\n  return range(inicio, fim+1, " \
@@ -16,7 +20,8 @@ class Lexer:
             f.write(cabecalho)
             
     def create_stream_py(self):
-        with open(self.file_name, 'r') as fonte:
+        cam = os.getcwd() + '\\input\\'
+        with open(cam + self.file_name, 'r') as fonte:
             for linha in fonte:
                 for (velho, novo) in self.dicionario.dictionary:
                     linha = linha.replace(velho, novo)

@@ -4,35 +4,20 @@ import os
 from dicionario import Dictionary
 from lexer import Lexer
 
-# Verificar se um argumento foi passado
-if len(sys.argv) < 2:
-    print("Uso: python main.py <nome_do_arquivo>")
-    sys.exit(1)
+cam = os.getcwd() + '\\input'
+cam_dir = os.listdir(cam)
+if len(cam_dir) != 0:
+    for arquivos in cam_dir:
+        if arquivos.endswith('.stream'):
+            dicionario = Dictionary()
 
-# limpar tela
-os.system("cls")
+            lex = Lexer(arquivos)
+            lex.write_head_file()
+            lex.create_stream_py()
 
-# lexer
-dicionario = Dictionary()
-print(dicionario.dictionary)
+            os.system(f"py {lex.file_name}.py")
+        else:
+            print('Nenhum arquivo .stream localizado no diretório')
 
-lex = Lexer(sys.argv[1])
-lex.write_head_file()
-lex.create_stream_py()
-
-# Executar o arquivo gerado
-os.system(f"py {lex.file_name}.py")
-
-
-# with open(sys.argv[1], 'r') as fonte:
-#     for linha in fonte:
-#         for x in linha.split():
-#             for x_, y in dicionario:
-#                 match = re.search(re.compile(x_), x)
-#                 if match and (x_ == x):
-#                     print(f'[ERROR]: line {linha}')
-#                     break
-#         for (velho, novo) in dicionario:
-#             linha = linha.replace(velho, novo)
-#         with open(f"{sys.argv[1]}.py", 'a') as f:  # Abrir em modo de anexação
-#             f.write(linha)
+else:
+    print('Não encontrado arquivos .stream no diretório.')
