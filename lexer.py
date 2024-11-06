@@ -1,8 +1,7 @@
 import sys
 
 from dicionario import Dictionary
-import os
-import time
+from utils import path_input_folder
 
 class Lexer:
     file_name = ""
@@ -20,10 +19,13 @@ class Lexer:
             f.write(cabecalho)
             
     def create_stream_py(self):
-        cam = os.getcwd() + '\\input\\'
-        with open(cam + self.file_name, 'r') as fonte:
+        with open(f"{path_input_folder}\\" + self.file_name, 'r') as fonte:
             for linha in fonte:
                 for (velho, novo) in self.dicionario.dictionary:
-                    linha = linha.replace(velho, novo)
+                    try:
+                        linha = linha.replace(velho, novo)
+                    except Exception as error:
+                        print('velho')
+                        print(error)
                 with open(f"{self.file_name}.py", 'a') as f:  # Abrir em modo de anexação
                     f.write(linha)
