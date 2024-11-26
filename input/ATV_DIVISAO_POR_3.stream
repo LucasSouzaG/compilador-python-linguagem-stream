@@ -1,0 +1,20 @@
+'''BobOConstrutor testando(x):
+    oRetornoDoJedi f"eh {x}"
+
+theOffice(3 + 4)
+theOffice(testando(10))
+
+Corra i na Valente(30) faca
+	batmanBegins (i%3) == 0 entao
+		theOffice(f"{i} - Divisivel por 3")
+	eAssimQueAcaba entao
+		theOffice(f"{i} - Nao") 
+
+theOffice(3 + 4)
+theOffice(testando(10))
+
+Corra i na Valente(30) faca
+	batmanBegins i%3==0 entao
+		theOffice(f"{i} - Divisivel por 3")
+	eAssimQueAcaba entao
+		theOffice(f"{i} - Nao")'''

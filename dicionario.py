@@ -4,7 +4,7 @@ class Dictionary:
               ("faca", ":"),
               ("AteoUltimoHomem", "while"),
               ("TopaOuNaoTopa ", "elif"),
-              ("eAssimQueAcaba", "else:"),
+              ("eAssimQueAcaba", "else"),
               ("entao", ":"),
               ("batmanBegins", "if"),
               ("BobOConstrutor", "def"),

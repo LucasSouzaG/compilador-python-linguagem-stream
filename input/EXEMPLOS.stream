@@ -1,0 +1,41 @@
+# DEFINIÇÃO DE FUNÇÃO
+
+'''
+BobOConstrutor soma(a, b):
+	oRetornoDoJedi a + b
+
+theOffice(soma(10, 20))
+'''
+
+
+# CONDICIONAL IF-ELIF-ELSE
+
+'''
+batmanBegins (10 > 5):
+	theOffice("10 é maior que 5")
+TopaOuNaoTopa (10 == 5):
+	theOffice("10 é igual a 5")
+eAssimQueAcaba:
+	theOffice("10 é menor que 5")
+'''
+
+# FOR LOOP
+
+'''
+Corra i in Valente(1, 6):
+	theOffice(i)
+'''
+
+# OPERADORES LÓGICOS
+
+'''
+## AND
+batmanBegins (10 e 5):
+	theOffice("Ambos são verdadeiros")
+eAssimQueAcaba:
+	theOffice("Um deles é falso")
+
+## NOT
+batmanBegins (NaoDurma(5 > 10)):
+	theOffice("5 não é maior que 10")
+'''
